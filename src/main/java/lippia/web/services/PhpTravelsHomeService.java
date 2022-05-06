@@ -30,9 +30,8 @@ public class PhpTravelsHomeService extends ActionManager {
     }
 
     private static void gotoAboutUs() {
-        //scroll because have a bug
-        JavascriptExecutor jse = DriverManager.getDriverInstance();
-        jse.executeScript("scroll(0, 50)");
+        //scroll for css bug in show menu
+        scroll();
         waitPresence((PhpTravelsHomeConstants.HEADER_COMPANY_MENU));
 
         Actions action = new Actions(DriverManager.getDriverInstance());
@@ -41,15 +40,13 @@ public class PhpTravelsHomeService extends ActionManager {
     }
 
     private static void gotoTermsOfUse(){
-        //scroll because have a bug
-        JavascriptExecutor jse = DriverManager.getDriverInstance();
-        jse.executeScript("scroll(0, 50)");
+        //scroll for css bug in show menu
+        scroll();
         waitPresence((PhpTravelsHomeConstants.HEADER_COMPANY_MENU));
 
         Actions action = new Actions(DriverManager.getDriverInstance());
         WebElement we = getElement(PhpTravelsHomeConstants.HEADER_COMPANY_MENU);
         action.moveToElement(we).moveToElement(getElement(PhpTravelsHomeConstants.HEADER_TERMS_OF_USE_MENU)).click().build().perform();
-
 }
 
 
@@ -62,5 +59,10 @@ public class PhpTravelsHomeService extends ActionManager {
                 waitVisibility(PhpTravelsHomeConstants.TITLE_TERM_OF_USE);
                 Assert.assertTrue(isVisible(PhpTravelsHomeConstants.TITLE_TERM_OF_USE));
         }
+    }
+
+    private static void scroll(){
+        JavascriptExecutor jse = DriverManager.getDriverInstance();
+        jse.executeScript("scroll(0, 50)");
     }
 }
