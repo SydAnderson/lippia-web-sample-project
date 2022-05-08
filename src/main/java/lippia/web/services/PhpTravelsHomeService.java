@@ -22,8 +22,10 @@ public class PhpTravelsHomeService extends ActionManager {
         switch (menu) {
             case "About Us":
                 PhpTravelsHomeService.gotoAboutUs();
+                break;
             case "Terms of Use":
                 PhpTravelsHomeService.gotoTermsOfUse();
+                break;
             default:
                 System.out.println("MenuNotFoundException");
         }
@@ -55,14 +57,20 @@ public class PhpTravelsHomeService extends ActionManager {
             case "About Us":
                 waitVisibility(PhpTravelsHomeConstants.TITLE_ABOUT_US);
                 Assert.assertTrue(isVisible(PhpTravelsHomeConstants.TITLE_ABOUT_US));
+                break;
             case "Terms of Use":
                 waitVisibility(PhpTravelsHomeConstants.TITLE_TERM_OF_USE);
                 Assert.assertTrue(isVisible(PhpTravelsHomeConstants.TITLE_TERM_OF_USE));
+                break;
         }
     }
 
     private static void scroll(){
         JavascriptExecutor jse = DriverManager.getDriverInstance();
         jse.executeScript("scroll(0, 50)");
+    }
+
+    public static void acceptCookies() {
+        click(PhpTravelsHomeConstants.BUTTON_COOKIES_GOT_IT);
     }
 }

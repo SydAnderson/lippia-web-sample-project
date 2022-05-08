@@ -7,16 +7,16 @@ import lippia.web.constants.PhpTravelsListConstants;
 import lippia.web.constants.TypeOfFlight;
 
 
-public class PhpTravelsHomeSearcherService extends ActionManager {
+public class PhpTravelsSearcherService extends ActionManager {
     /**
      * complete the fields to search for a roundtrip flight
      */
     public static void searchFlightRoundTrip() {
         clickMenuFlight();
-        selectTypeOfFlight(TypeOfFlight.ROUND_TRIP);
         flightFromTo("Buenos Aires", "Bern");
-        departureDate("25-05-2022");
-        returnDate("10-06-2022");
+        selectTypeOfFlight(TypeOfFlight.ROUND_TRIP);
+        departureDate("10-08-2022");
+        returnDate("25-08-2022");
     }
     /**
      * complete the fields to search for a one way flight
@@ -25,7 +25,7 @@ public class PhpTravelsHomeSearcherService extends ActionManager {
         clickMenuFlight();
         selectTypeOfFlight(TypeOfFlight.ONE_WAY);
         flightFromTo("Buenos Aires", "Bern");
-        departureDate("30-05-2022");
+        departureDate("10-08-2022");
     }
 
     /**
@@ -35,6 +35,18 @@ public class PhpTravelsHomeSearcherService extends ActionManager {
     public static boolean isFlightFound() {
         waitPresence(PhpTravelsListConstants.SEARCH_FLIGHT_FOUND);
         return isVisible(PhpTravelsListConstants.SEARCH_FLIGHT_FOUND);
+    }
+
+    public static void selectFirstFlightResult() {
+        if (isFlightFound()){
+            click(PhpTravelsListConstants.FIRST_RESULT_LIST_FLIGHT);
+        } else{
+            throw new Error("Not flight available");
+        }
+    }
+
+    public static void clickSearchFlightButton() {
+        click(PhpTravelsHomeConstants.BUTTON_SEARCH_FLIGHT);
     }
 
     /**
@@ -49,9 +61,6 @@ public class PhpTravelsHomeSearcherService extends ActionManager {
         click(PhpTravelsHomeConstants.AUTOCOMPLETE_FLIGHT_FIRST_RESULT);
     }
 
-    public static void clickSearchFlightButton() {
-        click(PhpTravelsHomeConstants.BUTTON_SEARCH_FLIGHT);
-    }
 
     private static void departureDate(String date) {
         setInput(PhpTravelsHomeConstants.DATE_FLIGHT_DEPARTURE, date, true, true);
@@ -73,9 +82,13 @@ public class PhpTravelsHomeSearcherService extends ActionManager {
         switch (typeOfFlight) {
             case ROUND_TRIP:
                 click(PhpTravelsHomeConstants.RADIO_BTN_ROUND_TRIP);
+                break;
             case ONE_WAY:
                 click(PhpTravelsHomeConstants.RADIO_BTN_ONE_WAY);
+                break;
         }
     }
+
+
 }
 

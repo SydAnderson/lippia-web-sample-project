@@ -9,6 +9,7 @@ public class PhpTravelsHomeSteps extends PageSteps {
     @Given("The user is in home page")
     public void home() {
         PhpTravelsHomeService.navegateToWeb();
+        PhpTravelsHomeService.acceptCookies();
     }
 
     @When("The user go to {string} page")

@@ -1,5 +1,7 @@
 package lippia.web.constants;
 
+import org.openqa.selenium.WebElement;
+
 public class PhpTravelsHomeConstants {
 
     public static final String HEADER_COMPANY_MENU = "xpath://div[contains(@class, 'main-menu-content')]//a[@href='company']";
@@ -21,5 +23,7 @@ public class PhpTravelsHomeConstants {
     public static final String DATE_FLIGHT_RETURN = "name:returning";
 
     public static final String BUTTON_SEARCH_FLIGHT = "id:flights-search";
+
+    public static final String BUTTON_COOKIES_GOT_IT = "id:cookie_stop";
 
 }
